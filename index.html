@@ -13,23 +13,22 @@
         <h1>Number Guessing Game</h1>
         <h3>Welcome!  I'm thinking of a number.  Your task is to guess it!</h3>
     </header>
-    <section>
+
+    <section class=instructions>
         <ul>
             <li>The number is an integer between 1 and 20 <em>inclusive</em>.</li>
             <li>You will have 4 guesses to get it right.</li>
             <li>After each guess, I will tell you if your guess was too high, too low, or just right!</li>
         </ul>
         <h2>Good Luck!  Let the guessing begin.</h2>
-        <hr>
-       </section>
+    </section>
     
     <section id='active-play'>
         <h3> <span id="hint"></span></h3>
         <label>Enter your guess: <input type="text" id="user-input"/></label>
         <div>
-            <button id="user-guess">Check My Guess</button>
+            <button id="submit-guess">Check My Guess</button>
         </div>
-        
     </section>
 
     <section id='lose' class='hidden'>

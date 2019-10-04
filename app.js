@@ -1,18 +1,27 @@
 import { compareNumbers } from './compare-numbers.js';
 
-const randomNumber = Math.floor(Math.random() * 20) + 1;
-console.log(randomNumber);
+//get DOM elements
 let activePlay = document.getElementById('active-play');
 let loser = document.getElementById('lose');
 let winner = document.getElementById('win');
-let guessesRemaining = 4;
-let checkGuess = document.getElementById('user-guess');
+let checkGuess = document.getElementById('submit-guess');
 
-checkGuess.addEventListener('click', () => {  
+//initialize state
+let guessesRemaining = 4;
+
+const getRandomNumber = () => {
+    const randomNumber = Math.ceil(Math.random() * 20);
+    return randomNumber;
+};
+
+const getGuess = () => {
     let userInput = document.getElementById('user-input');
-    let userInt = parseInt(userInput.value, 10);
-    const check = compareNumbers(userInt, randomNumber);
-    document.getElementById('user-input').value = '';
+    let userGuess = parseInt(userInput.value, 10);
+    return userGuess;
+};
+
+//displaying results
+const displayResults = (check) => {
     if (check === 0){
         winner.classList.remove('hidden');
         activePlay.classList.add('hidden');
@@ -21,14 +30,14 @@ checkGuess.addEventListener('click', () => {
     else if (check === 1 && guessesRemaining !== 1){
         guessesRemaining--;
         const updatedHint = document.getElementById('hint');
-        const message = (`Your guess of ${userInt} is too high.  You have ${guessesRemaining} guesses remaining.`);
+        const message = (`Your guess of ${getGuess.value} is too high.  You have ${guessesRemaining} guesses remaining.`);
         updatedHint.textContent = message;
 
     }
     else if (check === -1 && guessesRemaining !== 1){
         guessesRemaining--;
         const updatedHint = document.getElementById('hint');
-        const message = (`Your guess of ${userInt} is too low.  You have ${guessesRemaining} guesses remaining.`);
+        const message = (`Your guess of ${getGuess} is too low.  You have ${guessesRemaining} guesses remaining.`);
         updatedHint.textContent = message;
     }
 
@@ -38,7 +47,12 @@ checkGuess.addEventListener('click', () => {
         loser.classList.remove('hidden');
         return;
     }
-});
+};
+const playRound = () => {
+    const results = compareNumbers(getGuess(), getRandomNumber());
+    displayResults(results);
+};
+checkGuess.addEventListener('click', playRound);
 
 
 

@@ -9,6 +9,7 @@ export const compareNumbers = (guess, correctNumber) => {
         return 0;
     }
     else {
+        // eslint-disable-next-line no-console
         console.log('could not compare numbers');
         return 2;
     }
